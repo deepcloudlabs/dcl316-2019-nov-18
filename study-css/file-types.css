@@ -1,0 +1,12 @@
+a[href$="pdf"]:after {
+    content: url("pdf.png");
+}
+a[href$="pptx"]:after {
+    content: url("pptx.png");
+}
+a[href$="docx"]:after {
+    content: url("docx.png");
+}
+a[href$="xlsx"]:after {
+    content: url("xlsx.png");
+}

@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<title>Practice Session - CSS/jQuery</title>
+		<style type="text/css">
+			p:nth-child(3n) {
+				border: 3px red solid;
+			}
+			p:nth-child(3n+1) {
+				border: 3px blue solid;
+			}
+
+			p:nth-child(3n+2) {
+				border: 3px green solid;
+			}
+
+			p:hover {
+				background: lightgoldenrodyellow;
+			}
+
+			p:hover:first-line {
+				text-transform: uppercase;
+			}
+			.a {
+				background: lightgoldenrodyellow;
+			}
+			.b {
+				background: turquoise;
+			}
+			.c {
+				background: purple;
+			}
+		</style>
+	</head>
+	<body>
+	    <p>This is the first paragraph. This is the first paragraph. This is the first paragraph. This is the first paragraph. This is the first paragraph.</p>
+	    <p class="a">This is the second paragraph.</p>
+	    <p>This is the third paragraph.</p>
+	    <p class="b">This is the fourth paragraph.</p>
+		<ul id="list1">
+			<li class="a"><a href="albert.pdf">Albert Einstein</a></li>
+			<li class="b"><a href="fourier.docx">Jean Baptiste Joseph Fourier</a></li>
+			<li class="c"><a href="gauss.docx">Carl Friedrich Gauss</a></li>
+			<li class="a"><a href="hilbert.pdf">David Hilbert</a></li>
+			<li class="b"><a href="turing.pptx">Alan Mathison Turing</a></li>
+			<li class="c"><a href="cauchy.xlsx">Augustin Louis Cauchy</a></li>
+		</ul>
+	</body>
+</html>

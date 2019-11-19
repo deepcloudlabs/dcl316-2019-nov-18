@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Controls #3</title>
+</head>
+<body>
+    <form>
+        Full name: <input required
+                          placeholder="Enter your full name"
+                          type="text"/>
+        <br />
+        Address: <input required
+                        autofocus
+                        type="text"/>
+        <br />
+        Programming Language:
+        <input type="text"
+               required
+               list="langs"/>
+
+        <button>Register</button>
+        <datalist id="langs">
+            <option value="Java"/>
+            <option value="Scala"/>
+            <option value="Python"/>
+            <option value="Perl"/>
+            <option value="Go"/>
+            <option value="C"/>
+            <option value="C++"/>
+            <option value="C#"/>
+        </datalist>
+    </form>
+</body>
+</html>

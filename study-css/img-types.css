@@ -1,0 +1,19 @@
+a[href$="pdf"]:after {
+  content: url("pdf.png"); }
+
+a[href$="xlsx"]:after {
+  content: url("xlsx.png"); }
+
+a[href$="docx"]:after {
+  content: url("docx.png"); }
+
+a[href$="pptx"]:after {
+  content: url("pptx.png"); }
+
+a[href$="csv"]:after {
+  content: url("csv.png"); }
+
+a[href$="svg"]:after {
+  content: url("svg.png"); }
+
+/*# sourceMappingURL=img-types.css.map */

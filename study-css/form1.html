@@ -1,0 +1,85 @@
+﻿<html>
+	<head>
+		<title>Movie form</title>
+		<script type="text/javascript" src="jquery-1.11.1.js"></script>
+		<style type="text/css">
+			input[type="submit"]:hover {
+				cursor: zoom-out;
+			}
+			input[type="reset"]:hover {
+				cursor: zoom-in;
+			}
+			input:focus,textarea:focus,select:focus {
+				border: 2px blue dashed;
+				background-color: lightgoldenrodyellow;
+			}
+			input[type="radio"]:focus:before {
+			    display: block;
+				border: 2px blue solid;
+				content: '';
+				background-color: lightgoldenrodyellow;
+			}
+			input[type="checkbox"]:checked:after {
+				content: url("pdf.png");
+			}
+			input:invalid {
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<form action="" method="post">
+			<table border="0">
+				<tr>
+					<td>Movie Title:</td>
+					<td><input type="text"
+							   pattern="^[çöğüşıÇÖĞÜŞİA-Za-z0-9 -,]{3,}$"
+							   name="title" class="style2"/></td>
+				</tr>
+				<tr>
+					<td>Year:</td>
+					<td><input type="number" min="1920" name="year" class="style2"/></td>
+				</tr>
+				<tr>
+					<td>IMDB Reference:</td>
+					<td><input type="text"
+							   pattern="^tt[0-9]{6,9}$" name="imdb" class="style2"/></td>
+				</tr>
+				<tr>
+					<td>Genre:</td>
+					<td>
+						<select size="1" name="genre">
+							<option value="comedy">Comedy</option>
+							<option value="dram">Dram</option>
+							<option value="action">Action</option>
+							<option value="sci-fi">Sci-Fi</option>
+							<option value="horror">Horror</option>
+							<option value="thriller">Thriller</option>
+							<option value="animation">Animation</option>
+							<option value="family">Family</option>
+						</select>
+				</tr>
+				<tr>
+					<td>Have you seen it?</td>
+					<td><input type="checkbox" name="type" value="yes"/></td>
+				</tr>
+				<tr>
+					<td>Type:</td>
+					<td>
+						<input type="radio" name="type" value="tv">TV</input>
+						<input type="radio" name="type" value="cinema">Cinema</input>
+					</td>
+				</tr>
+				<tr>
+					<td>Comment:</td>
+					<td><textarea cols="40" rows="6" name="comment" class="style1"></textarea></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" value="Submit"/>
+						<input type="reset" value="Reset"/></td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,6 @@
+$list-of-exts: "pdf", "xlsx", "docx", "pptx", "csv", "svg"
+@for $i from 1 to length($list-of-exts)+1
+  $ext: nth($list-of-exts,$i)
+  a
+    &[href$="#{$ext}"]:after
+      content: url("#{$ext}.png")
