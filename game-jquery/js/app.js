@@ -16,6 +16,14 @@ $(document).ready(() => {
         tries.text(model.tries);
     }
 
+    function updateGameStatistics() {
+        wins.text(model.statistics.wins);
+        loses.text(model.statistics.loses);
+        avgWinsTime.text(model.statistics.avgWinsTime);
+        avgMoves.text(model.statistics.avgMoves);
+        avgMoveTime.text(model.statistics.avgMoveTime);
+    }
+
     function updateProgressBar() {
         let clazz = "progress-bar progress-bar-striped";
         if (model.counter<10)
@@ -31,11 +39,17 @@ $(document).ready(() => {
     let history = $("#history");
     let tries = $("#tries");
     let pbCounter = $("#counter");
+    let wins = $("#wins");
+    let loses = $("#loses");
+    let avgWinsTime = $("#avgWinsTime");
+    let avgMoves = $("#avgMoves");
+    let avgMoveTime = $("#avgMoveTime");
 
     function updateView() {
         updateHistory();
         updateProgressBar();
         updateTries();
+        updateGameStatistics();
     }
 
     window.setInterval(() => {
