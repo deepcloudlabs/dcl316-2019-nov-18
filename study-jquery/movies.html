@@ -1,4 +1,4 @@
-<html>
+<html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,27 +10,10 @@
     </style>
     <script type="text/javascript" src="js/lib/jquery-1.11.3.js"></script>
     <script type="text/javascript" src="js/lib/bootstrap.js"></script>
-    <script type="text/javascript">
-		$(document).ready(()=>{
-			/*
-			$("#movies tbody tr").each( function(){
-				let genres = $(this).find("td:eq(3)").text().trim();
-				genres = genres.replace(/\s+/g,'').split(',')
-				if (genres.length!=2) $(this).hide();
-				if( !(  genres.includes("Comedy") &&
-						genres.includes("Drama") ) )
-				       $(this).hide();
-			});
-			*/
-			$("#movies tbody tr").each( function() {
-				let numOfDirs = $(this).find("td:eq(2) a").length;
-				if (numOfDirs <2) $(this).hide();
-			});
-		});
-    </script>
+    <script type="application/javascript" src="js/exercise7.js"></script>
 </head>
 <body>
-<p/>
+<p>
 <div class="container" role="main">
     <div class="panel panel-success">
         <div class="panel-heading">
@@ -50,7 +33,7 @@
                 <tbody>
                 <tr>
                     <td>1</td>
-                    <td><a href="http://www.imdb.com/title/tt1022603" target="_blank">500 Days Of Summer</a></td>
+                    <td><a href="http://www.imdb.com/title/tt1022603">500 Days Of Summer</a></td>
                     <td><a href="http://www.imdb.com/name/nm1989536">Marc Webb</a></td>
                     <td>Comedy, Drama, Romance</td>
                     <td>2009</td>
