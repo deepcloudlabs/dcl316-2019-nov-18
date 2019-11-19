@@ -13,17 +13,20 @@ let emptyElement = function(element) {
 } ;
 
 window.onload = () => {
-   let playButton = /* TODO: get play button element by id using DOM */;
-   let guessInputText = /* TODO: get input element by id using DOM */;
-   let history = /* TODO: get history table body element by id using DOM */;
-   let tries = /* TODO: get span element by id using DOM */;
+   let playButton = document.querySelector("#play");
+   let guessInputText = document.querySelector("#guess");
+   let history = document.querySelector("#history");
+   let tries = document.querySelector("#tries");
    playButton.addEventListener("click", ()=>{
-       // TODO: Update game model
+       model.play(guessInputText.value);
        emptyElement(history);
-       tries.innerText = // TODO: Update tries element
-       for (let i in model.moves){
-           let move = model.moves[i];
-           // TODO: update table body
+       tries.innerText = model.tries;
+       for (let move of model.moves){
+           let tr = history.insertRow();
+            let guessTd = tr.insertCell(0);
+            let messageTd = tr.insertCell(1);
+            guessTd.appendChild(document.createTextNode(move.guess));
+            messageTd.appendChild(document.createTextNode(move.message));
        }
    },false)
 };
