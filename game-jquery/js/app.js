@@ -2,27 +2,49 @@ let model = new GameViewModel();
 
 $(document).ready(() => {
     function updateHistory() {
-        // TODO: Update history table
+        history.empty();
+        for (let move of model.moves) {
+            let tr = "<tr>" +
+                "<td>" + move.guess + "</td>" +
+                "<td>" + move.message + "</td>" +
+                "</tr>";
+            history.append(tr);
+        }
     }
 
     function updateTries() {
-        // TODO: Update treies
+        tries.text(model.tries);
     }
 
     function updateProgressBar() {
-        // TODO: Update progress bar
+        let clazz = "progress-bar progress-bar-striped";
+        if (model.counter<10)
+            clazz = "progress-bar progress-bar-danger";
+        else if (model.counter<20)
+            clazz = "progress-bar progress-bar-warning";
+        pbCounter.css("width", (10 *model.counter)/3 + '%');
+        pbCounter.attr("class",clazz);
     }
 
-    let playButton = /*TODO: Get play button element using jQuery selector */;
-    let guessInputText = /*TODO: Get input text element using jQuery selector */;
-    let history = /*TODO: Get history table body element using jQuery selector */;
-    let tries = /*TODO: Get tries span element using jQuery selector */;
+    let playButton = $("#play");
+    let guessInputText = $("#guess");
+    let history = $("#history");
+    let tries = $("#tries");
     let pbCounter = $("#counter");
+
+    function updateView() {
+        updateHistory();
+        updateProgressBar();
+        updateTries();
+    }
+
     window.setInterval(() => {
-        // TODO: Count down and update state/view
+        model.countDown();
+        updateView();
     }, 1000);
 
     playButton.click(() => {
-        // TODO: Update view model and then view
+        model.play(guessInputText.val());
+        updateView();
     })
 });
