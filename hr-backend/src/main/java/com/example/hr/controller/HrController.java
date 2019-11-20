@@ -2,18 +2,44 @@ package com.example.hr.controller;
 
 import com.example.hr.entity.Employee;
 import com.example.hr.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.RequestScope;
+
+import java.util.List;
 
 @RestController
 @RequestScope
 @RequestMapping("/employees")
 @CrossOrigin
 public class HrController {
-    private EmployeeService empSrv;
+    @Autowired private EmployeeService empSrv;
 
+    // http://localhost:7001/hr/api/v1/employees/1
     @GetMapping("/{identity}")
     public Employee getEmployeeByIdentity(@PathVariable String identity){
         return empSrv.findEmployeeById(identity);
+    }
+
+   // http://localhost:7001/hr/api/v1/employees?page=0&size=10
+    @GetMapping
+    public List<Employee> getEmployees(@RequestParam int page,
+                                       @RequestParam int size){
+        return empSrv.findEmployees(page,size);
+    }
+
+    @PostMapping
+    public void addEmployee(@RequestBody Employee employee){
+        empSrv.createEmployee(employee);
+    }
+
+    @PutMapping
+    public void updateEmployee(@RequestBody Employee employee){
+        empSrv.updateEmployee(employee);
+    }
+
+    @DeleteMapping("/{identity}")
+    public Employee deleteEmployeeByIdentity(@PathVariable String identity){
+        return empSrv.removeEmployeeById(identity);
     }
 }
