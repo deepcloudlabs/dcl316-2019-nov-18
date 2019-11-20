@@ -83,26 +83,31 @@
             <div class="form-group">
                 <label for="wins">Wins</label>
                 <span id="wins"
+                      data-bind="text: statistics.wins"
                       class="badge"></span>
             </div>
             <div class="form-group">
                 <label for="loses">Loses</label>
                 <span id="loses"
+                      data-bind="text: statistics.loses"
                       class="badge"></span>
             </div>
             <div class="form-group">
                 <label for="total">Total</label>
                 <span id="total"
+                      data-bind="text: statistics.total"
                       class="badge"></span>
             </div>
             <div class="form-group">
                 <label for="avgWinsTime">Average Wins Time</label>
                 <span id="avgWinsTime"
+                      data-bind="text: statistics.avgWinsTime"
                       class="badge"></span>
             </div>
             <div class="form-group">
                 <label for="avgMovePerGame">Average Move Per Game</label>
                 <span id="avgMovePerGame"
+                      data-bind="text: statistics.avgMoves"
                       class="badge"></span>
             </div>
         </div>

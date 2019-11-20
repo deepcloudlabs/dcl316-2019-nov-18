@@ -51,7 +51,7 @@ class GameViewModel {
         if (this.secret === Number(this.guess())) {
             this.statistics.wins(this.statistics.wins()+1);
             this.statistics.totalWinsTime(
-                this.statistics.totalWinsTime()+30 - this.counter()
+                this.statistics.totalWinsTime()+300 - this.counter()
             );
             this.statistics.totalMoves(
                 this.statistics.totalMoves()+this.tries()
