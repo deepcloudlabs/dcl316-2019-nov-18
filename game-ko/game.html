@@ -66,12 +66,14 @@
                     <th>Message</th>
                 </tr>
                 </thead>
-                <tbody data-bind="foreach: moves" id="history">
+                <tbody  id="history">
+                    <!-- ko foreach: {data: moves, as: 'move'} -->
                     <tr>
                         <td data-bind="text: $index()+1"></td>
-                        <td data-bind="text: guess"></td>
-                        <td data-bind="text: message"></td>
+                        <td data-bind="text: move.guess"></td>
+                        <td data-bind="text: move.message"></td>
                     </tr>
+                    <!-- /ko -->
                 </tbody>
             </table>
         </div>
