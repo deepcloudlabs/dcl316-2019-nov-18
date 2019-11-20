@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="deb843d0-e9df-4509-9875-f8b5dab17e61" name="Default Changelist" comment="">
+    <list default="true" id="deb843d0-e9df-4509-9875-f8b5dab17e61" name="Default Changelist" comment="View is developed for Game Statistics View and controller (app.js) is updated accordingly.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game.html" beforeDir="false" afterPath="$PROJECT_DIR$/game.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/app.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,7 +56,7 @@
       <updated>1549370104581</updated>
       <workItem from="1549370105814" duration="3267000" />
       <workItem from="1549373394840" duration="118000" />
-      <workItem from="1574163555769" duration="5003000" />
+      <workItem from="1574163555769" duration="5677000" />
     </task>
     <task id="LOCAL-00001" summary="game-jquery project is initialized">
       <created>1574163626726</created>
@@ -88,7 +86,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574168657064</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="View is developed for Game Statistics View and controller (app.js) is updated accordingly.">
+      <created>1574170016389</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1574170016389</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -112,6 +117,7 @@
     <MESSAGE value="game-jquery project is initialized" />
     <MESSAGE value="completed version of the game using jQuery in DOM manipulation" />
     <MESSAGE value="Game Statistics Model is developed." />
-    <option name="LAST_COMMIT_MESSAGE" value="Game Statistics Model is developed." />
+    <MESSAGE value="View is developed for Game Statistics View and controller (app.js) is updated accordingly." />
+    <option name="LAST_COMMIT_MESSAGE" value="View is developed for Game Statistics View and controller (app.js) is updated accordingly." />
   </component>
 </project>
