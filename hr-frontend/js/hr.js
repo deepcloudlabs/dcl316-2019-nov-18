@@ -9,6 +9,22 @@ class HrViewModel {
         this.find = this.find.bind(this);
         this.insertFile = this.insertFile.bind(this);
         this.dragover = this.dragover.bind(this);
+        this.addEmployee = this.addEmployee.bind(this);
+    }
+
+    async addEmployee(){
+        let emp = ko.toJS(this.employee);
+        emp.photo = toRawImage(this.fileData().dataUrl());
+        let json = JSON.stringify(emp);
+        await fetch(`${AppConfig.REST_API_BASE_URL}/employees`,{
+            method: 'POST',
+            headers : {
+                'Content-Type': 'application/json'
+            },
+            body: json
+        });
+        toastr.success("Employee is created!")
+        return 42;
     }
 
     insertFile(e, data) {
