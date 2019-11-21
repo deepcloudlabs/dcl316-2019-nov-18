@@ -90,7 +90,8 @@
                     <button class="btn btn-info">Add</button>
                     <button class="btn btn-warning">Update</button>
                     <button class="btn btn-danger">Delete</button>
-                    <button class="btn btn-success">Find</button>
+                    <button data-bind="click: find"
+                            class="btn btn-success">Find</button>
                     <button data-bind="click: findAll"
                             class="btn btn-success">Find All</button>
                 </div>
@@ -118,7 +119,7 @@
                     <tbody data-bind="foreach: { data : employees , as: 'emp'}">
                         <tr>
                             <td data-bind="text: $index()+1"></td>
-                            <td><img data-bind="attr: {src: emp.photo}"></td>
+                            <td><img style="width: 64px;" class="thumbnail" data-bind="attr: {src: emp.photo}"></td>
                             <td data-bind="text: emp.identityNo"></td>
                             <td data-bind="text: emp.fullname"></td>
                             <td data-bind="text: emp.iban"></td>
