@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Crypto Currency Admin Page</title>
+    <title>HR Admin Page</title>
     <style type="text/css">
         @import url("css/bootstrap.css");
         @import url("css/bootstrap-theme.css");
@@ -20,13 +20,24 @@
             color: #bbb;
         }
     </style>
+    <style type="text/css">
+        .errorStyle{
+
+            background-color:#ffd800;
+            color:#808080;
+            font-size:13px;
+            padding:5px 5px;
+            border-radius:5px;
+            margin-top:7px;
+        }
+    </style>
     <script type="text/javascript" src="js/lib/jquery-1.11.3.js"></script>
     <script type="text/javascript" src="js/lib/i18next-1.7.7.js"></script>
     <script type="text/javascript" src="js/lib/bootstrap.js"></script>
     <script type="text/javascript" src="js/lib/toastr.min.js"></script>
     <script type="text/javascript" src="js/lib/knockout-3.4.2.debug.js"></script>
     <script type="text/javascript" src="js/lib/knockout-localization.js"></script>
-    <script type="text/javascript" src="js/lib/knockout.validation.min.js"></script>
+    <script type="text/javascript" src="js/lib/knockout.validation.js"></script>
     <script type="text/javascript" src="js/lib/ko-file.js"></script>
     <script type="text/javascript" src="js/hr-config.js"></script>
     <script type="text/javascript" src="js/hr-util.js"></script>
@@ -47,14 +58,14 @@
                 <div class="form-group">
                     <label for="identityNo">Identity No</label>
                     <input id="identityNo"
-                           data-bind="value: employee.identityNo"
+                           data-bind="textInput: employee.identityNo"
                            type="text"
                            class="form-control" />
                 </div>
                 <div class="form-group">
                     <label for="name">Full Name</label>
                     <input id="name"
-                           data-bind="value: employee.fullname"
+                           data-bind="textInput: employee.fullname"
                            type="text"
                            class="form-control" />
                 </div>
@@ -62,6 +73,13 @@
                     <label for="iban">Iban</label>
                     <input id="iban"
                            data-bind="value: employee.iban"
+                           type="text"
+                           class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="byear">Birth Year</label>
+                    <input id="byear"
+                           data-bind="value: employee.birthYear"
                            type="text"
                            class="form-control" />
                 </div>
@@ -115,13 +133,13 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button data-bind="click: addEmployee"
+                    <button data-bind="click: addEmployee,disable: !employee.isEmployeeValid()"
                             class="btn btn-info">Add</button>
-                    <button data-bind="click: updateEmployee"
+                    <button data-bind="click: updateEmployee,disable: !employee.isEmployeeValid()"
                             class="btn btn-warning">Update</button>
-                    <button data-bind="click: removeEmployee"
+                    <button data-bind="click: removeEmployee,disable: !employee.identityNo.isValid()"
                             class="btn btn-danger">Delete</button>
-                    <button data-bind="click: find"
+                    <button data-bind="click: find,disable: !employee.identityNo.isValid()"
                             class="btn btn-success">Find</button>
                     <button data-bind="click: findAll"
                             class="btn btn-success">Find All</button>
@@ -141,6 +159,7 @@
                             <th>Identity No</th>
                             <th>Full Name</th>
                             <th>Iban</th>
+                            <th>Birth Year</th>
                             <th>Salary</th>
                             <th>Part time?</th>
                             <th>Department</th>
@@ -154,6 +173,7 @@
                             <td data-bind="text: emp.identityNo"></td>
                             <td data-bind="text: emp.fullname"></td>
                             <td data-bind="text: emp.iban"></td>
+                            <td data-bind="text: emp.birthYear"></td>
                             <td data-bind="text: emp.salary"></td>
                             <td data-bind="text: emp.partTime"></td>
                             <td data-bind="text: emp.department"></td>
