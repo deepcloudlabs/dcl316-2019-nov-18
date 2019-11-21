@@ -8,6 +8,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.RequestScope;
 
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
@@ -21,14 +22,23 @@ public class HrController {
     // http://localhost:7001/hr/api/v1/employees/1
     @GetMapping("/{identity}")
     public Employee getEmployeeByIdentity(
-            @PathVariable @Validated @TcKimlikNo String identity){
+            @PathVariable
+            @Validated
+            @TcKimlikNo(message="You must provide a valid identity no")
+                    String identity){
         return empSrv.findEmployeeById(identity);
     }
 
    // http://localhost:7001/hr/api/v1/employees?page=0&size=10
     @GetMapping
-    public List<Employee> getEmployees(@RequestParam int page,
-                                       @RequestParam int size){
+    public List<Employee> getEmployees(
+            @RequestParam
+            @Validated
+            @Min(value=0,message="page no must be larger than or equal to 0") int page,
+            @RequestParam
+            @Validated
+            @Min(value=10,message="page size must be larger than or equal to 10")
+                    int size){
         return empSrv.findEmployees(page,size);
     }
 

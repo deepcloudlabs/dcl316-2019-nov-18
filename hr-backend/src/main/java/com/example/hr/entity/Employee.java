@@ -16,18 +16,18 @@ import java.util.Objects;
 public class Employee {
     @Id
     @Column(name = "identity")
-    @TcKimlikNo
-    @NotNull
+    @TcKimlikNo(message="You must provide a valid identity no.")
+    @NotNull(message="You must provide a valid identity no.")
     private String identityNo;
-    @Pattern(regexp = "^[A-Z][a-z]+ [A-Z][a-z]+$")
+    @Pattern(regexp = "^[A-Z][a-z]+ [A-Z][a-z]+$",message="You must provide a valid full name like 'Jack Bauer'.")
     private String fullname;
-    @NotNull
-    @Iban
+    @NotNull(message="You must provide a valid iban")
+    @Iban(message="You must provide a valid iban")
     private String iban;
-    @Min(2400)
+    @Min(value=2400,message="Salary must be larger than or equal to 2400")
     private double salary;
     @Column(name = "year")
-    @Max(2000)
+    @Max(value=2000,message="Birth year must be before 2000")
     private int birthYear;
     @Column(name = "part_time")
     private boolean partTime;
@@ -35,7 +35,7 @@ public class Employee {
     @Column(columnDefinition = "longblob")
     private byte[] photo;
     @Enumerated(EnumType.STRING)
-    @NotNull
+    @NotNull(message="You must provide a valid department.")
     private Department department;
 
     public Employee() {
