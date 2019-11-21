@@ -91,7 +91,8 @@
                     <button class="btn btn-warning">Update</button>
                     <button class="btn btn-danger">Delete</button>
                     <button class="btn btn-success">Find</button>
-                    <button class="btn btn-success">Find All</button>
+                    <button data-bind="click: findAll"
+                            class="btn btn-success">Find All</button>
                 </div>
             </div>
         </div>
@@ -103,21 +104,27 @@
                 <table class="table table-responsive">
                     <thead>
                         <tr>
+                            <th>No</th>
                             <th>Photo</th>
                             <th>Identity No</th>
                             <th>Full Name</th>
+                            <th>Iban</th>
                             <th>Salary</th>
+                            <th>Part time?</th>
                             <th>Department</th>
                             <th>Operations</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody data-bind="foreach: { data : employees , as: 'emp'}">
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td data-bind="text: $index()+1"></td>
+                            <td><img data-bind="attr: {src: emp.photo}"></td>
+                            <td data-bind="text: emp.identityNo"></td>
+                            <td data-bind="text: emp.fullname"></td>
+                            <td data-bind="text: emp.iban"></td>
+                            <td data-bind="text: emp.salary"></td>
+                            <td data-bind="text: emp.partTime"></td>
+                            <td data-bind="text: emp.department"></td>
                             <td><button class="btn btn-danger">Delete</button> </td>
                         </tr>
                     </tbody>
