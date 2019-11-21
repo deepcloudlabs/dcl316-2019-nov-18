@@ -32,6 +32,9 @@ public class EmployeeService {
 
     @Transactional
     public void createEmployee(Employee employee) {
+        String identity= employee.getIdentityNo();
+        if (employeeRepository.existsById(identity))
+            throw new IllegalArgumentException("Employee already exists!");
         employeeRepository.save(employee);
     }
 

@@ -1,30 +1,41 @@
 package com.example.hr.entity;
 
+import com.example.hr.validation.Iban;
+import com.example.hr.validation.TcKimlikNo;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.Objects;
 
 @Entity
-@Table(name="employees")
+@Table(name = "employees")
 @DynamicInsert
 @DynamicUpdate
 public class Employee {
     @Id
-    @Column(name="identity")
+    @Column(name = "identity")
+    @TcKimlikNo
+    @NotNull
     private String identityNo;
+    @Pattern(regexp = "^[A-Z][a-z]+ [A-Z][a-z]+$")
     private String fullname;
+    @NotNull
+    @Iban
     private String iban;
+    @Min(2400)
     private double salary;
-    @Column(name="year")
+    @Column(name = "year")
+    @Max(2000)
     private int birthYear;
-    @Column(name="part_time")
+    @Column(name = "part_time")
     private boolean partTime;
     @Lob
     @Column(columnDefinition = "longblob")
     private byte[] photo;
     @Enumerated(EnumType.STRING)
+    @NotNull
     private Department department;
 
     public Employee() {
