@@ -157,7 +157,8 @@
                             <td data-bind="text: emp.salary"></td>
                             <td data-bind="text: emp.partTime"></td>
                             <td data-bind="text: emp.department"></td>
-                            <td><button class="btn btn-danger">Delete</button> </td>
+                            <td><button data-bind="click: $root.deleteEmployee"
+                                        class="btn btn-danger">Delete</button> </td>
                         </tr>
                     </tbody>
                 </table>
