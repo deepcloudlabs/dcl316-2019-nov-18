@@ -43,7 +43,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
     public Docket api(ServletContext servletContext) {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("com.example.hr"))
                 .paths(PathSelectors.any())
                 .build()
                 .host(host.concat(":").concat(Long.toString(port)))
