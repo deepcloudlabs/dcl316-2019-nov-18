@@ -8,6 +8,18 @@
         @import url("css/bootstrap-theme.css");
         @import url("css/toastr.css");
     </style>
+    <style type="text/css">
+        .drop-zone {
+            border: 5px dashed #bbb;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            padding: 25px;
+            text-align: center;
+            font: 20pt bold;
+            color: #bbb;
+        }
+    </style>
     <script type="text/javascript" src="js/lib/jquery-1.11.3.js"></script>
     <script type="text/javascript" src="js/lib/i18next-1.7.7.js"></script>
     <script type="text/javascript" src="js/lib/bootstrap.js"></script>
@@ -80,11 +92,23 @@
                 </div>
                 <div class="form-group">
                     <label for="photo">Photo</label>
-                    <img data-bind="attr: {src: employee.photo}"
-                         style="width: 64px; height: 64px;"/>
-                    <input type="file"
-                           id="photo"
-                           class="form-control"/>
+                    <img data-bind="attr: {src: fileData().dataUrl}"
+                         style="width: 64px;"/>
+                    <label class="btn btn-info">
+                        <input type="file"
+                               style="display: none;"
+                               data-bind="fileInput: fileData"
+                               id="photo"
+                               class="form-control"/>
+                        <span>File</span>
+                    </label>
+                    <div type="text"
+                         id="filedrag"
+                         class="drop-zone"
+                         data-bind="event: { drop: function (data,e) { $root.insertFile(e,data);},
+	    			     dragover: function(data,e){ $root.dragover(e);}	}">
+                        Drop the photo here!
+                    </div>
                 </div>
                 <div class="form-group">
                     <button class="btn btn-info">Add</button>
