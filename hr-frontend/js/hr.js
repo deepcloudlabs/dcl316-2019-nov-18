@@ -10,21 +10,54 @@ class HrViewModel {
         this.insertFile = this.insertFile.bind(this);
         this.dragover = this.dragover.bind(this);
         this.addEmployee = this.addEmployee.bind(this);
+        this.updateEmployee = this.updateEmployee.bind(this);
+        this.removeEmployee = this.removeEmployee.bind(this);
+    }
+    
+    removeEmployee(){
+        fetch(`${AppConfig.REST_API_BASE_URL}/employees/${this.employee.identityNo()}`,
+            {
+                method: 'DELETE'
+            })
+            .then(resp => resp.json())
+            .then(employee => {
+                if (employee.photo == null) employee.photo = AppConfig.NO_IMAGE;
+                else
+                    employee.photo = toSrcImage(employee.photo);
+                return employee;
+            }).then(employee => {
+            this.employee.refresh(employee);
+            this.fileData().dataUrl(employee.photo);
+            toastr.warning("Employee is deleted!")
+        });
+
     }
 
-    async addEmployee(){
+    async addEmployee() {
         let emp = ko.toJS(this.employee);
         emp.photo = toRawImage(this.fileData().dataUrl());
         let json = JSON.stringify(emp);
-        await fetch(`${AppConfig.REST_API_BASE_URL}/employees`,{
+        await fetch(`${AppConfig.REST_API_BASE_URL}/employees`, {
             method: 'POST',
-            headers : {
+            headers: {
                 'Content-Type': 'application/json'
             },
             body: json
         });
         toastr.success("Employee is created!")
-        return 42;
+    }
+
+    updateEmployee() {
+        let emp = ko.toJS(this.employee);
+        emp.photo = toRawImage(this.fileData().dataUrl());
+        let json = JSON.stringify(emp);
+        fetch(`${AppConfig.REST_API_BASE_URL}/employees`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: json
+        }).then( () => toastr.success("Employee is updated!"));
     }
 
     insertFile(e, data) {
@@ -46,18 +79,23 @@ class HrViewModel {
             .then(resp => resp.json())
             .then(employee => {
                 if (employee.photo == null) employee.photo = AppConfig.NO_IMAGE;
+                else
+                    employee.photo = toSrcImage(employee.photo);
                 return employee;
             }).then(employee => {
-               this.employee.refresh(employee);
-               this.fileData().dataUrl(employee.photo);
-            });
+            this.employee.refresh(employee);
+            this.fileData().dataUrl(employee.photo);
+        });
     }
 
     findAll() {
         fetch(`${AppConfig.REST_API_BASE_URL}/employees?page=0&size=10`)
             .then(resp => resp.json())
             .then(employees => employees.map(emp => {
-                if (emp.photo == null) emp.photo = AppConfig.NO_IMAGE;
+                if (emp.photo == null)
+                    emp.photo = AppConfig.NO_IMAGE;
+                else
+                    emp.photo = toSrcImage(emp.photo);
                 return emp;
             }))
             .then(employees => this.employees(employees));

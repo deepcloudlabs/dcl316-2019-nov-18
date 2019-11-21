@@ -91,17 +91,21 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="photo">Photo</label>
+                    <label class="control-label"
+                           for="photo">Photo</label>
                     <img data-bind="attr: {src: fileData().dataUrl}"
+                         id="photo"
+                         class="thumbnail"
                          style="width: 64px;"/>
                     <label class="btn btn-info">
                         <input type="file"
                                style="display: none;"
                                data-bind="fileInput: fileData"
-                               id="photo"
                                class="form-control"/>
                         <span>File</span>
                     </label>
+                </div>
+                <div class="form-group">
                     <div type="text"
                          id="filedrag"
                          class="drop-zone"
@@ -113,8 +117,10 @@
                 <div class="form-group">
                     <button data-bind="click: addEmployee"
                             class="btn btn-info">Add</button>
-                    <button class="btn btn-warning">Update</button>
-                    <button class="btn btn-danger">Delete</button>
+                    <button data-bind="click: updateEmployee"
+                            class="btn btn-warning">Update</button>
+                    <button data-bind="click: removeEmployee"
+                            class="btn btn-danger">Delete</button>
                     <button data-bind="click: find"
                             class="btn btn-success">Find</button>
                     <button data-bind="click: findAll"
