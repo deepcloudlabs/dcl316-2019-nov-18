@@ -13,6 +13,30 @@ class HrViewModel {
         this.updateEmployee = this.updateEmployee.bind(this);
         this.removeEmployee = this.removeEmployee.bind(this);
         this.deleteEmployee = this.deleteEmployee.bind(this);
+        this.changeLng = this.changeLng.bind(this);
+        this.changeLngToTr = this.changeLngToTr.bind(this);
+        this.changeLngToEn = this.changeLngToEn.bind(this);
+        this.i18n = this.i18n.bind(this);
+    }
+
+    changeLng(lng) {
+        i18n.setLng(lng, () => {
+            this.i18n();
+            knockoutLocalize(lng);
+            this.employee.validateEmployee();
+        });
+    }
+
+    i18n() {
+        $(document).i18n();
+    }
+
+    changeLngToTr() {
+        this.changeLng('tr');
+    }
+
+    changeLngToEn() {
+        this.changeLng('en');
     }
 
     deleteEmployee(employee) {
@@ -120,6 +144,9 @@ class HrViewModel {
                     emp.photo = toSrcImage(emp.photo);
                 return emp;
             }))
-            .then(employees => this.employees(employees));
+            .then(employees => {
+                this.employees(employees);
+                this.i18n();
+            });
     }
 };

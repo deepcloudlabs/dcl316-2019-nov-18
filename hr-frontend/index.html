@@ -50,8 +50,12 @@
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Employee</h3>
-                <button class="btn btn-info">Turkish</button>
-                <button class="btn btn-warning">English</button>
+                <button data-i18n="buttonTurkish"
+                        data-bind="click: changeLngToTr"
+                        class="btn btn-info"></button>
+                <button data-i18n="buttonEnglish"
+                        data-bind="click: changeLngToEn"
+                        class="btn btn-warning"></button>
             </div>
             <div class="panel-body">
                 <div class="form-group">
@@ -133,15 +137,20 @@
                 </div>
                 <div class="form-group">
                     <button data-bind="click: addEmployee,disable: !employee.isEmployeeValid()"
-                            class="btn btn-info">Add</button>
+                            class="btn btn-info"
+                            data-i18n="buttonAdd"></button>
                     <button data-bind="click: updateEmployee,disable: !employee.isEmployeeValid()"
-                            class="btn btn-warning">Update</button>
+                            data-i18n="buttonUpdate"
+                            class="btn btn-warning"></button>
                     <button data-bind="click: removeEmployee,disable: !employee.identityNo.isValid()"
-                            class="btn btn-danger">Delete</button>
+                            data-i18n="buttonDelete"
+                            class="btn btn-danger"></button>
                     <button data-bind="click: find,disable: !employee.identityNo.isValid()"
-                            class="btn btn-success">Find</button>
+                            data-i18n="buttonFind"
+                            class="btn btn-success"></button>
                     <button data-bind="click: findAll"
-                            class="btn btn-success">Find All</button>
+                            data-i18n="buttonFindAll"
+                            class="btn btn-success"></button>
                 </div>
             </div>
         </div>
@@ -177,7 +186,8 @@
                             <td data-bind="text: emp.partTime"></td>
                             <td data-bind="text: emp.department"></td>
                             <td><button data-bind="click: $root.deleteEmployee"
-                                        class="btn btn-danger">Delete</button> </td>
+                                        data-i18n="buttonDelete"
+                                        class="btn btn-danger"></button> </td>
                         </tr>
                     </tbody>
                 </table>
