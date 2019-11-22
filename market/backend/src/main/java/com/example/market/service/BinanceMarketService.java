@@ -34,10 +34,8 @@ public class BinanceMarketService {
     @Scheduled(fixedRate = 1_000)
     public void callBinanceRestApi() {
         RestTemplate rt = new RestTemplate();
-        Ticker ticker = rt.getForEntity(binanceRestUrl, Ticker.class)
-                .getBody();
+        Ticker ticker = rt.getForEntity(binanceRestUrl, Ticker.class).getBody();
         tickerRepository.save(ticker);
-        System.out.println(ticker);
     }
 
 }
