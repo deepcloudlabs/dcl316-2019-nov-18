@@ -8,10 +8,11 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+
+import javax.annotation.PostConstruct;
 
 @Service
-@ConditionalOnProperty(name="emulation.mode",havingValue = "true")
+@ConditionalOnProperty(name = "emulation.mode", havingValue = "true")
 public class BinanceMarketEmulationService {
 
     @Value("${binance.rest.url}")
@@ -25,11 +26,16 @@ public class BinanceMarketEmulationService {
         this.publisher = publisher;
     }
 
+    @PostConstruct
+    public void init() {
+        System.out.println("BinanceMarketEmulationService is active.");
+    }
+
     @Scheduled(fixedRate = 1_000)
-    public void callBinanceRestApiEmulation(){
-        double price = 7500 + ( Math.random() - 0.5 ) * 10 ;
-        double quantity = Math.random() * 2 ;
-        Ticker ticker = new Ticker("BTCUSDT",Double.toString(price));
+    public void callBinanceRestApiEmulation() {
+        double price = 7500 + (Math.random() - 0.5) * 10;
+        double quantity = Math.random() * 2;
+        Ticker ticker = new Ticker("BTCUSDT", Double.toString(price));
         tickerRepository.save(ticker);
         Trade trade = new Trade();
         trade.setSymbol("btcusdt");
@@ -38,6 +44,5 @@ public class BinanceMarketEmulationService {
         trade.setTimestamp("1");
         trade.setSequence(1);
         publisher.publishEvent(trade);
-        System.out.println("Emulation mode is active: "+ticker);
     }
 }
