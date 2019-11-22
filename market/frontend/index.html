@@ -8,6 +8,7 @@
         @import url("css/bootstrap-theme.css");
         @import url("css/toastr.css");
     </style>
+    <script type="text/javascript" src="http://s3.tradingview.com/tv.js"></script>
     <script type="text/javascript" src="js/lib/jquery-1.11.3.js"></script>
     <script type="text/javascript" src="js/lib/i18next-1.7.7.js"></script>
     <script type="text/javascript" src="js/lib/bootstrap.js"></script>
@@ -22,7 +23,7 @@
     <script type="text/javascript" src="js/monitor.js"></script>
 </head>
 <body>
-<p />
+<p/>
 <div class="container">
     <div class="panel panel-primary">
         <div class="panel-heading">
@@ -38,11 +39,15 @@
             <div class="form-group">
                 <label for="symbol" data-i18n="labelSymbol"></label>
                 <select id="symbol"
-                        class="form-control"></select>
+                        data-bind="value: symbol"
+                        class="form-control">
+                    <option>BTCUSDT</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="windowSize" data-i18n="labelWindowSize"></label>
                 <select id="windowSize"
+                        data-bind="value: windowSize"
                         class="form-control">
                     <option label="10" value="10">10</option>
                     <option label="25" value="25">25</option>
@@ -51,18 +56,30 @@
             </div>
             <div class="form-group">
                 <button class="btn btn-success"
+                        data-bind="click: start, visible: !isMonitoring() && isConnected()"
                         data-i18n="buttonStart"></button>
                 <button class="btn btn-danger"
+                        data-bind="click: stop, visible: isMonitoring() && isConnected()"
                         data-i18n="buttonStop"></button>
+            </div>
+        </div>
+    </div>
+    <div data-bind="visible: isConnected() && isMonitoring()" class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title" data-i18n="panelTitleChart"></h3>
+        </div>
+        <div class="panel-body">
+            <div class="panel-body">
+                <canvas data-bind="chart: {type: 'line', data: data, options: { observeChanges: true, throttle: 100, animation: {duration: 0}}}"></canvas>
             </div>
         </div>
     </div>
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title" data-i18n="panelTitleChart"></h3>
+            <h3 class="panel-title">Trading View</h3>
         </div>
         <div class="panel-body">
-            <canvas></canvas>
+            <div id="dcl"></div>
         </div>
     </div>
 </div>
