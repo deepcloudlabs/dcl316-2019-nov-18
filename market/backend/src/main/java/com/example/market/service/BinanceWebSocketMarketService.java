@@ -1,6 +1,10 @@
 package com.example.market.service;
 
+import com.example.market.domain.Trade;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.WebSocketHandler;
@@ -11,13 +15,18 @@ import org.springframework.web.socket.client.WebSocketClient;
 import javax.annotation.PostConstruct;
 
 @Service
+@ConditionalOnProperty(name="emulation.mode",havingValue = "false")
 public class BinanceWebSocketMarketService implements WebSocketHandler {
     @Value("${binance.ws.url}")
     private String url;
     private WebSocketClient webSocketClient;
+    private ObjectMapper objectMapper;
+    private ApplicationEventPublisher publisher;
 
-    public BinanceWebSocketMarketService(WebSocketClient webSocketClient) {
+    public BinanceWebSocketMarketService(WebSocketClient webSocketClient, ObjectMapper objectMapper, ApplicationEventPublisher publisher) {
         this.webSocketClient = webSocketClient;
+        this.objectMapper = objectMapper;
+        this.publisher = publisher;
     }
 
     @PostConstruct
@@ -32,8 +41,9 @@ public class BinanceWebSocketMarketService implements WebSocketHandler {
 
     @Override
     public void handleMessage(WebSocketSession webSocketSession, WebSocketMessage<?> webSocketMessage) throws Exception {
-        String trade = (String) webSocketMessage.getPayload();
-        System.out.println(trade);
+        String payload = (String) webSocketMessage.getPayload();
+        Trade trade = objectMapper.readValue(payload,Trade.class);
+        publisher.publishEvent(trade);
     }
 
     @Override
