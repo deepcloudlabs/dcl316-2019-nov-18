@@ -917,6 +917,24 @@
         },
         message: 'Please enter a proper date.'
     };
+    let calculateModulus = function(code) {
+        var reformattedCode = code.substring(4) + code.substring(0, 4);
+        reformattedCode = reformattedCode.replace(/[A-Z]/g, function(match) {
+            return match.charCodeAt(0) - 55;
+        });
+        var total = 0;
+        for (i = 0; i < reformattedCode.length; i++) {
+            charValue = reformattedCode.charCodeAt(i) - 48;
+            if (charValue < 0 || charValue > 35) {
+                return 0;
+            }
+            total = (Number(charValue) > 9 ? total * 100 : total * 10) + charValue;
+            if (total < AppConfig.MAX) {
+                total = (total % AppConfig.MODULUS);
+            }
+        }
+        return total % AppConfig.MODULUS;
+    };
 
     kv.rules['iban'] = {
         validator: function (e) {

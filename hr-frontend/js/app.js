@@ -3,15 +3,14 @@ $(
     () => {
         toastr.options = AppConfig.TOASTR_CONFIG;
         knockoutLocalize('en');
-        ko.applyBindings(hrViewModel);
         ko.validation.init({
             decorateElement: true,
-            decorateInputElement: true,
+            decorateElementOnModified: true,
             insertMessages: true,
-            errorElementClass: 'errorStyle',
-            errorMessageClass: 'errorStyle',
-            errorClass: 'errorStyle'
+            errorElementClass: 'text-danger',
+            errorMessageClass: 'help-block text-danger'
         }, true);
+        ko.applyBindings(hrViewModel);
         hrViewModel.employee.validateEmployee();
     }
 );

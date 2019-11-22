@@ -13,7 +13,11 @@ class Employee {
                 message: "Enter a valid full name!"
             }
         });
-        this.iban = ko.observable("TR");
+        this.iban = ko.observable("TR").extend({
+            required: true,
+            iban: true,
+            message: "Enter a valid iban!"
+        });;
         this.salary = ko.observable(2200).extend({
             required: true,
             min: 2400
@@ -46,7 +50,6 @@ class Employee {
             if (ko.isObservable(o) && o.hasOwnProperty('rules')) {
                 o.isModified(true);
                 ko.validation.validateObservable(o);
-                console.log(o.isValid())
             }
         }
     }
